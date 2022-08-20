@@ -164,7 +164,18 @@ async def unban(ctx, *, member):
 @boti.command()
 async def spam(ctx, member : discord.Member):
 
-    await ctx.send(f"HELLO {member.mention} \n"*10)
+    await ctx.send(f"HELLO {member.mention} \n")
+
+    await ctx.send(f"HeLLO {member.mention}\n")
+
+    await ctx.send(f"HELLO {member.mention} \n")
+
+    await ctx.send(f"HeLLO {member.mention}\n")
+
+    await ctx.send(f"HELLO {member.mention} \n")
+
+    await ctx.send(f"HeLLO {member.mention}\n")
+
 
 
 
