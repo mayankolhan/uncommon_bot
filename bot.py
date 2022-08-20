@@ -159,6 +159,12 @@ async def unban(ctx, *, member):
     await ctx.send(f'Unbanned {obj}')
 
 
+      
+      
+@boti.command()
+async def spam(ctx, member : discord.Member):
+
+    await ctx.send(f"HELLO {member.mention} \n"*10)
 
 
 
@@ -169,6 +175,7 @@ async def time(ctx):
     tm = str(datetime.datetime.time(datetime.datetime.now()))
 
     await ctx.send(tm[:2]+" hours " + tm[3:5] + " minutes " + tm[6:10] + " seconds ")
+
 
 
 
