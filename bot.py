@@ -170,18 +170,18 @@ async def time(ctx):
 
 
 @boti.command()
-async def spam(ctx, member: discord.Member):
-    await ctx.send(f"HELLO {member.mention} \n")
+async def spam(ctx, member: discord.Member , *, message):
+    await ctx.send(f"{member.mention} "+ message )
 
-    await ctx.send(f"HeLLO {member.mention}\n")
+    await ctx.send(f"{member.mention} "+ message )
 
-    await ctx.send(f"HELLO {member.mention} \n")
+    await ctx.send(f"{member.mention} "+ message )
 
-    await ctx.send(f"HeLLO {member.mention}\n")
+    await ctx.send(f"{member.mention} "+ message)
 
-    await ctx.send(f"HELLO {member.mention} \n")
+    await ctx.send(f"{member.mention} " + message )
 
-    await ctx.send(f"HeLLO {member.mention}\n")
+    await ctx.send(f"{member.mention} "+ message )
 
 
 boti.run(token["DISCORD_TOKEN"])
