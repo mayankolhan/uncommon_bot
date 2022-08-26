@@ -183,5 +183,28 @@ async def spam(ctx, member: discord.Member , *, message):
 
     await ctx.send(f"{member.mention} "+ message )
 
+@boti.command()
+async def pic(ctx , *,message):
+    pass
+
+@boti.command()
+async def anger(ctx):
+    api_key = "AIzaSyBE3EIUMTY6dgYF5_q8kpl7WSxW42g2484"
+    client_key = "mk223"
+    lim = 12
+    search  = "angry"
+    r = requests.get("https://tenor.googleapis.com/v2/search?q=%s&key=%s&client_key=%s&limit=%s" % (
+    search, api_key, client_key, lim))
+    if r.status_code == 200:
+
+        top8 = json.loads(r.content)
+
+        await ctx.send(top8["results"][random.randint(0, 10)]["url"])
+
+    else:
+        await ctx.send("found nothing")
+
+
+
 
 boti.run(token["DISCORD_TOKEN"])
