@@ -1,15 +1,15 @@
-import discord
-import json
-from dotenv import load_dotenv
-from dotenv import dotenv_values
-import pandas as pd
-import numpy as np
-import random
-import requests
 import datetime
-
-from discord.ext import commands, tasks
+import json
+import random
 from itertools import cycle
+
+import discord
+import numpy as np
+import pandas as pd
+import requests
+from discord.ext import commands, tasks
+from dotenv import dotenv_values
+from dotenv import load_dotenv
 
 status = cycle(["killing myself", "not killing myself"])
 
@@ -37,6 +37,7 @@ intent.members = True
 
 boti = commands.Bot(command_prefix="_", intents=intent)
 
+
 # boti will not be initialized if intents parameter is not passed
 # instead of discord.Intents.all() we can also use discord.Intents.default()
 # then use intent.members = True to get member names
@@ -62,7 +63,7 @@ async def on_ready():
 #      cnt+=1
 
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=5)
 async def change_status():
     await boti.change_presence(activity=discord.Game(next(status)))
 
@@ -74,9 +75,8 @@ async def on_member_join(member):
 
 
 @boti.command()
-async def talk(ctx , *,message):
-
-    if("joke" in message):
+async def talk(ctx, *, message):
+    if ("H" in message):
         await ctx.channel.send("chup kar chutad")
 
 
@@ -104,7 +104,7 @@ async def bad(ctx):
 
 @boti.command(help="enter word or sentence and will get a gif")
 async def gif(ctx, *, search):
-    api_key = "AIzaSyBE3EIUMTY6dgYF5_q8kpl7WSxW42g2484"
+    api_key = "AIzaSyAIRgBPCl4ekXyNw_pi_FdWXZPvUJ4tOl8"
     client_key = "mk223"
     lim = 8
     r = requests.get("https://tenor.googleapis.com/v2/search?q=%s&key=%s&client_key=%s&limit=%s" % (
@@ -169,32 +169,24 @@ async def time(ctx):
     await ctx.send(tm[:2] + " hours " + tm[3:5] + " minutes " + tm[6:10] + " seconds ")
 
 
-@boti.command()
-async def spam(ctx, member: discord.Member , *, message):
-    await ctx.send(f"{member.mention} "+ message )
+@boti.command(help ="annoy people you love the most")
+async def spam(ctx, *, message=""):
+    await ctx.send(message)
 
-    await ctx.send(f"{member.mention} "+ message )
+    await ctx.send(message)
 
-    await ctx.send(f"{member.mention} "+ message )
+    await ctx.send(message)
 
-    await ctx.send(f"{member.mention} "+ message)
-
-    await ctx.send(f"{member.mention} " + message )
-
-    await ctx.send(f"{member.mention} "+ message )
-
-@boti.command()
-async def pic(ctx , *,message):
-    pass
+    await ctx.send(message)
 
 @boti.command()
 async def anger(ctx):
     api_key = "AIzaSyBE3EIUMTY6dgYF5_q8kpl7WSxW42g2484"
     client_key = "mk223"
     lim = 12
-    search  = "angry"
+    search = "angry"
     r = requests.get("https://tenor.googleapis.com/v2/search?q=%s&key=%s&client_key=%s&limit=%s" % (
-    search, api_key, client_key, lim))
+        search, api_key, client_key, lim))
     if r.status_code == 200:
 
         top8 = json.loads(r.content)
@@ -203,8 +195,6 @@ async def anger(ctx):
 
     else:
         await ctx.send("found nothing")
-
-
 
 
 boti.run(token["DISCORD_TOKEN"])
